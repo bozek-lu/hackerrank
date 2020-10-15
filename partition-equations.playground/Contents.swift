@@ -31,5 +31,5 @@ for _ in 1...n {
 }
 
 for i in ints {
-    getResult(from: 2, denominator: 3)
+    getResult(from: i.0, denominator: i.1)
 }
