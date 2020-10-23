@@ -5,18 +5,17 @@ func weightedUniformStrings(s: String, queries: [Int]) -> [String] {
     
     var contiguous: [[Int]] = []
     
-    var partialResults: [Int] = []
+    var partialResults: [Int] = [arrayOfWeights.first!]
+    contiguous.append(partialResults)
     for i in arrayOfWeights {
-        if partialResults.isEmpty {
-            partialResults.append(i)
-        } else if partialResults.last == i {
+        if partialResults.last == i {
             partialResults.append(i)
         } else {
             partialResults = [i]
         }
         contiguous.append(partialResults)
     }
-    let summed = contiguous.flatMap { $0.reduce(0, +) }
+    let summed = contiguous.compactMap { $0.reduce(0, +) }
     return queries.map { summed.contains($0) ? "Yes" : "No" }
 }
 
